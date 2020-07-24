@@ -1,0 +1,32 @@
+{
+  "name": "@10up/frontity-elasticpress",
+  "version": "1.0.0",
+  "description": "Official ElasticPress integration for Frontity",
+  "keywords": [
+    "elasticpress",
+    "frontity",
+    "frontity-elatiscpress",
+    "wordpress"
+  ],
+  "homepage": "https://www.elasticpress.io/",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/10up/frontity-packages.git"
+  },
+  "bugs": {
+    "url": "https://github.com/10up/frontity-packages/issues"
+  },
+  "scripts": {
+    "test:ci": "../../node_modules/.bin/jest --ci --coverage",
+    "test": "../../node_modules/.bin/jest --watch",
+    "test:inspect": "node --inspect ../../node_modules/.bin/jest --watch --no-cache --runInBand"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.1",
+    "@testing-library/react": "^10.4.7"
+  },
+  "dependencies": {
+    "frontity": "^1.9.0"
+  }
+}

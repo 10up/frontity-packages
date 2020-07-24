@@ -1,0 +1,1 @@
+# @10up/frontity-elasticpress
