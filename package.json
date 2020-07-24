@@ -1,0 +1,70 @@
+{
+  "name": "@10up/frontity-packages",
+  "version": "1.0.0",
+  "description": "10up's collection of frontity packages",
+  "directories": {
+    "example": "examples"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@10up/eslint-config": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.18.0",
+    "eslint-plugin-jsdoc": "^22.2.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "frontity": "^1.10.0",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "test": "lerna run test:ci --stream",
+    "test:ci": "jest --clearCache && lerna run test:ci --stream",
+    "codecov": "curl -s https://codecov.io/bash | bash -s",
+    "prepare": "lerna bootstrap --hoist",
+    "reinstall": "lerna clean --yes && npm run prepare"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ]
+  },
+  "engines": {
+    "node" : ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/10up/frontity-packages.git"
+  },
+  "keywords": [
+    "frontity",
+    "wordpress",
+    "10up"
+  ],
+  "author": "Nícholas Andre <nicholas.andre@10up.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/10up/frontity-packages/issues"
+  },
+  "homepage": "https://github.com/10up/frontity-packages#readme"
+}
