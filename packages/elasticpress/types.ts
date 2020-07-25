@@ -1,9 +1,12 @@
 import { Package } from 'frontity/types';
+import WpSource from '@frontity/wp-source/types';
 
 interface ElasticPress extends Package {
-	name: '@10up/frontity-elasticpress';
+	name: '@tenup/frontity-elasticpress';
 	libraries: {
-		elasticpress: {};
+		source: {
+			handlers: WpSource['libraries']['source']['handlers'];
+		};
 	};
 }
 

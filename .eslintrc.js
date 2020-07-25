@@ -11,7 +11,7 @@ module.exports = {
 				alwaysTryTypes: true,
 			},
 		},
-		'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+		'import/extensions': ['.js', '.jsx', '.ts', '.tsx'], 
     },
     rules: {
         'no-undef': 0,
@@ -20,7 +20,7 @@ module.exports = {
         'import/no-extraneous-dependencies': [
 			'error',
 			{ devDependencies: true, optionalDependencies: true, peerDependencies: true },
-		],
+        ],
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
             mjs: 'never',
@@ -28,5 +28,15 @@ module.exports = {
             ts: 'never',
             tsx: 'never',
         }],
-    }
+    },
+    overrides: [
+		{
+			files: ['*.ts','*.tsx'],
+			rules: {
+                'jsdoc/require-param-type': 0,
+                'react/prop-types': 0,
+                'no-shadow': 0,
+			},
+		},
+	],
 };

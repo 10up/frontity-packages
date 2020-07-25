@@ -1,5 +1,5 @@
 {
-  "name": "@10up/frontity-elasticpress",
+  "name": "@tenup/frontity-elasticpress",
   "version": "1.0.0",
   "description": "Official ElasticPress integration for Frontity",
   "keywords": [
@@ -24,9 +24,11 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.1",
-    "@testing-library/react": "^10.4.7"
+    "@testing-library/react": "^10.4.7",
+    "react": "^16.13.1"
   },
   "dependencies": {
+    "@frontity/wp-source": "^1.8.0",
     "frontity": "^1.9.0"
   }
 }
