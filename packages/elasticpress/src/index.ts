@@ -7,7 +7,7 @@ const elasticpress: ElasticPress = {
 		source: {
 			handlers: [
 				{
-					name: 'elasticpress-related-posts',
+					name: 'epRelatedPosts',
 					priority: 10,
 					pattern: '@posts/:postId(\\d+)/related',
 					func: relatedPost,

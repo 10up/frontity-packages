@@ -28,6 +28,8 @@ module.exports = {
             ts: 'never',
             tsx: 'never',
         }],
+        // we want to allow changing object parameters.
+		'no-param-reassign': [2, { props: false }],
     },
     overrides: [
 		{
