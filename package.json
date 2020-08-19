@@ -39,7 +39,7 @@
     "lint": "eslint .",
     "format": "eslint . --fix",
     "codecov": "curl -s https://codecov.io/bash | bash -s",
-    "prepare": "lerna bootstrap",
+    "prepare": "lerna bootstrap --ignore=packages/twentypress-theme",
     "reinstall": "lerna clean --yes && npm run prepare"
   },
   "husky": {
