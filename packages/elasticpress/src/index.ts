@@ -2,7 +2,7 @@ import ElasticPress from '../types';
 import { relatedPost } from './handlers';
 
 const elasticpress: ElasticPress = {
-	name: '@tenup/frontity-elasticpress',
+	name: '@10up/frontity-elasticpress',
 	libraries: {
 		source: {
 			handlers: [
@@ -16,5 +16,5 @@ const elasticpress: ElasticPress = {
 		},
 	},
 };
-console.log(elasticpress);
+
 export default elasticpress;

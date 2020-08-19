@@ -3,6 +3,5 @@
     "packages/*",
     "examples/*"
   ],
-  "npmClient": "npm",
   "version": "independet"
 }

@@ -32,10 +32,10 @@ export default {
 			name: '@frontity/wp-source',
 			state: {
 				source: {
-					api: 'http://playground.test/wp-json',
+					api: 'http://elasticpress.test/wp-json',
 				},
 			},
 		},
-		'@tenup/frontity-elasticpress',
+		'@10up/frontity-elasticpress',
 	],
 };

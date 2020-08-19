@@ -9,7 +9,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@10up/eslint-config": "^2.0.0",
+    "@10up/eslint-config": "^2.1.1",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "babel-eslint": "^10.1.0",
@@ -25,7 +25,6 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^2.5.0",
     "eslint-plugin-tsdoc": "^0.2.6",
-    "frontity": "^1.10.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lerna": "^3.22.1",
@@ -37,8 +36,10 @@
   "scripts": {
     "test": "lerna run test:ci --stream",
     "test:ci": "jest --clearCache && lerna run test:ci --stream",
+    "lint": "eslint .",
+    "format": "eslint . --fix",
     "codecov": "curl -s https://codecov.io/bash | bash -s",
-    "prepare": "lerna bootstrap --hoist",
+    "prepare": "lerna bootstrap",
     "reinstall": "lerna clean --yes && npm run prepare"
   },
   "husky": {

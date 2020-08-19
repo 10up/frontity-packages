@@ -15,7 +15,10 @@ const relatedPostHandler: Handler = async ({ route, params, state, libraries, fo
 	});
 
 	const populated = await populate({ response, state, force });
-	console.log(populated);
+
+	Object.assign(state.source.data[route], {
+		items: populated,
+	});
 };
 
 export default relatedPostHandler;

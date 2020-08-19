@@ -1,0 +1,26 @@
+{
+  "name": "@10up/twentypress-theme",
+  "version": "1.0.0",
+  "description": "The WordPress Twenty Twenty starter theme for Frontity superchared with ElasticPress",
+  "keywords": [
+    "frontity",
+    "frontity-theme",
+    "wordpress",
+    "elasticpress"
+  ],
+  "homepage": "https://frontity.org",
+  "license": "GNU GPL 2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/10up/frontity-packages.git"
+  },
+  "bugs": {
+    "url": "https://github.com/10up/frontity-packages/issues"
+  },
+  "dependencies": {
+    "@frontity/components": "^1.3.3",
+    "@frontity/html2react": "^1.3.4",
+    "frontity": "^1.9.0",
+    "react-spring": "^8.0.27"
+  }
+}

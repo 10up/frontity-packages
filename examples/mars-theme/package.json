@@ -8,14 +8,14 @@
     "build": "frontity build"
   },
   "dependencies": {
-    "@frontity/core": "^1.5.0",
-    "@frontity/html2react": "^1.2.0",
-    "@frontity/mars-theme": "^1.3.1",
-    "@frontity/tiny-router": "^1.1.0",
-    "@frontity/wp-source": "^1.5.0",
-    "@tenup/frontity-elasticpress": "^1.0.0",
-    "babel-plugin-frontity": "^1.0.1",
-    "frontity": "^1.5.1"
+    "@frontity/core": "^1.7.3",
+    "@frontity/html2react": "^1.3.5",
+    "@frontity/mars-theme": "^1.4.3",
+    "@frontity/tiny-router": "^1.2.1",
+    "@frontity/wp-source": "^1.8.1",
+    "@10up/frontity-elasticpress": "^1.0.0",
+    "babel-plugin-frontity": "^1.0.2",
+    "frontity": "^1.10.1"
   },
   "author": "",
   "license": "ISC"
