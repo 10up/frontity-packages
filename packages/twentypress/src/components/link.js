@@ -19,7 +19,7 @@ const Link = ({
 		if (!isExternal) {
 			if (state.theme.autoPreFetch === 'all') actions.source.fetch(link);
 		}
-	}, [isExternal, state.theme.autoPreFetch, actions.source, link]);
+	}, []);
 
 	const onClick = (event) => {
 		// Do nothing if it's an external link

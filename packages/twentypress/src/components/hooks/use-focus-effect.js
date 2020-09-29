@@ -14,11 +14,13 @@ const useFocusEffect = (initialFocusRef, isOpen) => {
 			activeElementRef.current = document.activeElement;
 			// Focus the element with the initialFocusRef
 			initialFocusRef.current.focus();
-		} else if (activeElementRef.current) {
+		} else {
 			// else, return focus to the triggering element
-			activeElementRef.current.focus();
+			if (activeElementRef.current) {
+				activeElementRef.current.focus();
+			}
 		}
-	}, [isOpen, initialFocusRef]);
+	}, [isOpen]);
 };
 
 export default useFocusEffect;

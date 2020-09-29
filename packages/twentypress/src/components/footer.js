@@ -10,7 +10,7 @@ const BackToTop = () => {
 		// prevent the default behaviors
 		event.preventDefault();
 		// scroll to the top smoothly
-		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+		scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 	};
 
 	return (

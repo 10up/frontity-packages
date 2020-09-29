@@ -29,10 +29,12 @@ function trapFocus(element) {
 				lastFocusableEl.focus();
 				event.preventDefault();
 			}
-		} else if (document.activeElement === lastFocusableEl) {
+		} else {
 			// user pressed `tab`
-			firstFocusableEl.focus();
-			event.preventDefault();
+			if (document.activeElement === lastFocusableEl) {
+				firstFocusableEl.focus();
+				event.preventDefault();
+			}
 		}
 	});
 }
@@ -48,7 +50,7 @@ function useFocusTrap(ref, isOpen) {
 		if (isOpen && ref.current) {
 			trapFocus(ref.current);
 		}
-	}, [isOpen, ref]);
+	}, [isOpen]);
 }
 
 export default useFocusTrap;

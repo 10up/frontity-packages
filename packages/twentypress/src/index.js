@@ -1,14 +1,15 @@
 import image from '@frontity/html2react/processors/image';
+import { withElasticPress } from '@10up/frontity-elasticpress';
 import Theme from './components';
 
 const twentyTwentyTheme = {
-	name: '@10up/twentypress-theme',
+	name: '@10up/twentypress',
 	roots: {
 		/**
 		 *  In Frontity, any package can add React components to the site.
 		 *  We use roots for that, scoped to the `theme` namespace.
 		 */
-		theme: Theme,
+		theme: withElasticPress(Theme),
 	},
 	state: {
 		/**

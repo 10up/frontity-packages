@@ -1,21 +1,15 @@
-import { ElasticPressProvider } from '@10up/frontity-elasticpress';
-
-console.log(ElasticPressProvider);
-
-export default {
-	name: 'mars-theme',
+const settings = {
+	name: 'frontity-packages',
 	state: {
 		frontity: {
-			url: 'https://mars.frontity.org',
+			url: 'https://test.frontity.org',
 			title: 'Test Frontity Blog',
-			description: 'Useful content for Frontity development',
+			description: 'WordPress installation for Frontity development',
 		},
 	},
 	packages: [
-		'@frontity/tiny-router',
-		'@frontity/html2react',
 		{
-			name: '@frontity/mars-theme',
+			name: '@10up/twentypress',
 			state: {
 				theme: {
 					menu: [
@@ -26,8 +20,8 @@ export default {
 						['About Us', '/about-us/'],
 					],
 					featured: {
-						showOnList: true,
-						showOnPost: true,
+						showOnList: false,
+						showOnPost: false,
 					},
 				},
 			},
@@ -36,10 +30,14 @@ export default {
 			name: '@frontity/wp-source',
 			state: {
 				source: {
-					api: 'http://elasticpress.test/wp-json',
+					api: 'https://test.frontity.org/wp-json',
 				},
 			},
 		},
+		'@frontity/tiny-router',
+		'@frontity/html2react',
 		'@10up/frontity-elasticpress',
 	],
 };
+
+export default settings;

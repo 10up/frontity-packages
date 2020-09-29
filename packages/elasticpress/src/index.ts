@@ -1,6 +1,6 @@
-import { ElasticPressProvider } from '@10up/elasticpress-react';
 import ElasticPress from '../types';
 import { relatedPost } from './handlers';
+
 import { withElasticPress } from './hocs';
 
 const elasticpress: ElasticPress = {
@@ -20,4 +20,4 @@ const elasticpress: ElasticPress = {
 };
 
 export default elasticpress;
-export { withElasticPress, ElasticPressProvider };
+export { withElasticPress };

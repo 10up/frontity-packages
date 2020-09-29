@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
 import { connect, styled, css } from 'frontity';
 import Link from '../link';
@@ -41,13 +40,70 @@ const paginate = (totalPages, currentPage) => {
 	return pagination;
 };
 
+const Pagination = ({ state, actions, libraries }) => {
+	const { route, query, totalPages, next, previous, page } = state.source.get(state.router.link);
+
+	// get page link with page number
+	const getPageLink = (page) => libraries.source.stringify({ route, query, page });
+
+	// Pagination - array of numbers/dots for pages
+	const paginationArray = paginate(totalPages, page);
+
+	// Prefetch next page if it hasn't been fetched yet.
+	useEffect(() => {
+		if (next) actions.source.fetch(next);
+	}, []);
+
+	return (
+		<Container>
+			<Direction>
+				{previous && (
+					<StyledLink link={previous}>
+						← <DirectionItem>Newer</DirectionItem>
+					</StyledLink>
+				)}
+			</Direction>
+
+			<div css={inlineBlock}>
+				<PagingList>
+					{paginationArray.map((item, index) => {
+						// if item is dots, "..."
+						if (item === '...') {
+							return <PagingItem key={index}>...</PagingItem>;
+						}
+
+						// if item is current page
+						if (item === page) {
+							return <PagingItem key={index}>{item}</PagingItem>;
+						}
+
+						return (
+							<PagingItem key={index}>
+								<StyledLink link={getPageLink(item)}>{item}</StyledLink>
+							</PagingItem>
+						);
+					})}
+				</PagingList>
+			</div>
+
+			<Direction>
+				{next && (
+					<StyledLink link={next}>
+						<DirectionItem>Older</DirectionItem> →
+					</StyledLink>
+				)}
+			</Direction>
+		</Container>
+	);
+};
+
+const getMaxWidth = (props) => maxWidths[props.size] || maxWidths.medium;
+
 const maxWidths = {
 	thin: '58rem',
 	small: '80rem',
 	medium: '100rem',
 };
-
-const getMaxWidth = (props) => maxWidths[props.size] || maxWidths.medium;
 
 const inlineBlock = css`
 	display: inline-block;
@@ -104,62 +160,5 @@ const StyledLink = styled(Link)`
 		text-decoration: underline;
 	}
 `;
-
-const Pagination = ({ state, actions, libraries }) => {
-	const { route, query, totalPages, next, previous, page } = state.source.get(state.router.link);
-
-	// get page link with page number
-	const getPageLink = (page) => libraries.source.stringify({ route, query, page });
-
-	// Pagination - array of numbers/dots for pages
-	const paginationArray = paginate(totalPages, page);
-
-	// Prefetch next page if it hasn't been fetched yet.
-	useEffect(() => {
-		if (next) actions.source.fetch(next);
-	}, [next, actions.source]);
-
-	return (
-		<Container>
-			<Direction>
-				{previous && (
-					<StyledLink link={previous}>
-						← <DirectionItem>Newer</DirectionItem>
-					</StyledLink>
-				)}
-			</Direction>
-
-			<div css={inlineBlock}>
-				<PagingList>
-					{paginationArray.map((item, index) => {
-						// if item is dots, "..."
-						if (item === '...') {
-							return <PagingItem key={index}>...</PagingItem>;
-						}
-
-						// if item is current page
-						if (item === page) {
-							return <PagingItem key={index}>{item}</PagingItem>;
-						}
-
-						return (
-							<PagingItem key={index}>
-								<StyledLink link={getPageLink(item)}>{item}</StyledLink>
-							</PagingItem>
-						);
-					})}
-				</PagingList>
-			</div>
-
-			<Direction>
-				{next && (
-					<StyledLink link={next}>
-						<DirectionItem>Older</DirectionItem> →
-					</StyledLink>
-				)}
-			</Direction>
-		</Container>
-	);
-};
 
 export default connect(Pagination);

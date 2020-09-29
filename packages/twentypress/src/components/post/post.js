@@ -49,7 +49,7 @@ const Post = ({ state, actions, libraries }) => {
 	 */
 	useEffect(() => {
 		actions.source.fetch('/');
-	}, [actions.source]);
+	}, []);
 
 	// Load the post, but only if the data is ready.
 	return data.isReady ? (
