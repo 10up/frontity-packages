@@ -1,3 +1,7 @@
+import { ElasticPressProvider } from '@10up/frontity-elasticpress';
+
+console.log(ElasticPressProvider);
+
 export default {
 	name: 'mars-theme',
 	state: {

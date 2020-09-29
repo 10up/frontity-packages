@@ -2,7 +2,7 @@ import image from '@frontity/html2react/processors/image';
 import Theme from './components';
 
 const twentyTwentyTheme = {
-	name: '@frontity/twentytwenty-theme',
+	name: '@10up/twentypress-theme',
 	roots: {
 		/**
 		 *  In Frontity, any package can add React components to the site.

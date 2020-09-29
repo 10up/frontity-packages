@@ -8,6 +8,11 @@ interface ElasticPress extends Package {
 			handlers: WpSource['libraries']['source']['handlers'];
 		};
 	};
+	state?: {
+		elasticpress: {
+			endpoint: string;
+		};
+	};
 }
 
 export default ElasticPress;

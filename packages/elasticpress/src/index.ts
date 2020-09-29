@@ -1,5 +1,7 @@
+import { ElasticPressProvider } from '@10up/elasticpress-react';
 import ElasticPress from '../types';
 import { relatedPost } from './handlers';
+import { withElasticPress } from './hocs';
 
 const elasticpress: ElasticPress = {
 	name: '@10up/frontity-elasticpress',
@@ -18,3 +20,4 @@ const elasticpress: ElasticPress = {
 };
 
 export default elasticpress;
+export { withElasticPress, ElasticPressProvider };
