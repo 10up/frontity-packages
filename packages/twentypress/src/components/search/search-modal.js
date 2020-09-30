@@ -36,7 +36,7 @@ const SearchModal = ({ state, actions }) => {
 
 		// Get the input's value
 		const searchString = inputRef.current.value;
-
+		console.log(searchString);
 		// If the typed search string is not empty
 		// Better to trim write spaces as well
 		if (searchString.trim().length > 0) {
@@ -44,10 +44,10 @@ const SearchModal = ({ state, actions }) => {
 			actions.router.set(`/?s=${formatQuery(searchString)}`);
 
 			// Scroll the page to the top
-			window.scrollTo(0, 0);
+			// window.scrollTo(0, 0);
 
 			// Close the search modal
-			closeSearchModal();
+			// closeSearchModal();
 		}
 	};
 
@@ -103,6 +103,7 @@ const SearchModal = ({ state, actions }) => {
 												defaultValue={searchQuery || ''}
 												placeholder="search for:"
 												name="search"
+												onChange={handleSubmit}
 											/>
 											<SearchButton bg={primary}>Search</SearchButton>
 										</SearchForm>

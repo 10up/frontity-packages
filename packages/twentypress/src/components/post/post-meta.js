@@ -31,7 +31,16 @@ export const PostMetaList = styled.ul`
 `;
 
 const PostMeta = ({ state, item }) => {
+	// TODO: fix this
+	if (typeof item.author === 'object') {
+		return null;
+	}
 	const author = state.source.author[item.author];
+
+	if (!author.link) {
+		return null;
+	}
+
 	const date = new Date(item.date);
 	// const numberOfComments = item.comments.length;
 

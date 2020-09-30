@@ -9,7 +9,7 @@ const SearchForm = ({ state, actions, libraries }) => {
 	const searchQuery = parse.query.s;
 	const { primary } = state.theme.colors;
 
-	const { closeSearchModal } = actions.theme;
+	// const { closeSearchModal } = actions.theme;
 	// Keep a reference to the input so we can grab it's value on form submission
 	const inputRef = useRef();
 
@@ -27,10 +27,10 @@ const SearchForm = ({ state, actions, libraries }) => {
 			actions.router.set(`/?s=${searchString.toLowerCase()}`);
 
 			// Scroll the page to the top
-			window.scrollTo(0, 0);
+			// window.scrollTo(0, 0);
 
 			// Close the search modal
-			closeSearchModal();
+			// closeSearchModal();
 		}
 	};
 
@@ -43,6 +43,7 @@ const SearchForm = ({ state, actions, libraries }) => {
 					defaultValue={searchQuery}
 					placeholder="Search ..."
 					ref={inputRef}
+					onChange={handleSubmit}
 				/>
 			</Label>
 			<SearchButton bg={primary} type="submit">

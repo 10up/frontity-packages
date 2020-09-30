@@ -1,5 +1,6 @@
 import { connect, Global, Head, styled } from 'frontity';
 import Switch from '@frontity/components/switch';
+
 import React from 'react';
 import Footer from './footer';
 import globalStyles from './styles/global-styles';
@@ -48,7 +49,7 @@ const Theme = ({ state }) => {
         on the type of URL we are in. */}
 				<Main id="main">
 					<Switch>
-						<Loading when={data.isFetching} />
+						<Loading when={data.isFetching && !data.isSearch} />
 						<SearchResults when={data.isSearch} />
 						<Archive when={data.isArchive} />
 						<Post when={data.isPostType} />

@@ -1,5 +1,2 @@
-import relatedPost from './related-post';
-
-export { relatedPost };
-
-export default { relatedPost };
+export { default as relatedPost } from './related-post';
+export { default as search } from './search';

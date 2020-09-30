@@ -30,13 +30,22 @@ const settings = {
 			name: '@frontity/wp-source',
 			state: {
 				source: {
-					api: 'https://test.frontity.org/wp-json',
+					api: 'http://elasticpress.test/wp-json',
 				},
 			},
 		},
 		'@frontity/tiny-router',
 		'@frontity/html2react',
-		'@10up/frontity-elasticpress',
+		{
+			name: '@10up/frontity-elasticpress',
+			state: {
+				elasticpress: {
+					node: 'http://elasticpress.test/__elasticsearch',
+					indexName: 'elasticpresstest-post-1',
+					loadInitialData: true,
+				},
+			},
+		},
 	],
 };
 

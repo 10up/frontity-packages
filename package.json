@@ -8,6 +8,7 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
+    "dev:inspect": "node --inspect -r ts-node/register/transpile-only ./node_modules/.bin/frontity dev",
     "dev": "frontity dev",
     "build": "frontity build",
     "serve": "frontity serve",

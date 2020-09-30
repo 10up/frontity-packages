@@ -1,21 +1,26 @@
 import React from 'react';
 import { ElasticPressProvider } from '@10up/elasticpress-react';
 import { connect, useConnect } from 'frontity';
+import { Packages, WithElasticPressType } from '../../types';
 
-const withElasticPress = (Comp) => {
+const withElasticPress: WithElasticPressType = (Comp) => {
 	const WrappedComponent = () => {
-		const { state } = useConnect();
-		const data = state.source.get(state.router.link);
-		console.log(data);
+		const { state } = useConnect<Packages>();
+		const { isSearch } = state.source.get(state.router.link);
 
-		return (
-			<ElasticPressProvider
-				node="http://elasticpress.test/__elasticsearch"
-				indexName="elasticpresstest-post-1"
-			>
-				<Comp />
-			</ElasticPressProvider>
-		);
+		if (isSearch) {
+			return (
+				<ElasticPressProvider
+					node={state.elasticpress.node}
+					indexName={state.elasticpress.indexName}
+					loadInitialData={state.elasticpress.loadInitialData || true}
+				>
+					<Comp />
+				</ElasticPressProvider>
+			);
+		}
+
+		return <Comp />;
 	};
 
 	return connect(WrappedComponent);

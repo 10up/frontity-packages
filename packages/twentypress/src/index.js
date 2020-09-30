@@ -1,5 +1,4 @@
 import image from '@frontity/html2react/processors/image';
-import { withElasticPress } from '@10up/frontity-elasticpress';
 import Theme from './components';
 
 const twentyTwentyTheme = {
@@ -9,7 +8,7 @@ const twentyTwentyTheme = {
 		 *  In Frontity, any package can add React components to the site.
 		 *  We use roots for that, scoped to the `theme` namespace.
 		 */
-		theme: withElasticPress(Theme),
+		theme: Theme,
 	},
 	state: {
 		/**
