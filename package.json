@@ -1,15 +1,22 @@
 {
-  "name": "@10up/frontity-packages",
+  "name": "frontity-packages",
   "version": "1.0.0",
+  "private": true,
   "description": "10up's collection of frontity packages",
-  "directories": {
-    "example": "examples"
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "scripts": {
+    "dev:inspect": "node --inspect -r ts-node/register/transpile-only ./node_modules/.bin/frontity dev",
+    "dev": "frontity dev",
+    "build": "frontity build",
+    "serve": "frontity serve",
+    "lint": "eslint .",
+    "format": "eslint . --fix"
+  },
   "devDependencies": {
-    "@10up/eslint-config": "^2.0.0",
+    "@10up/eslint-config": "^2.1.1",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "babel-eslint": "^10.1.0",
@@ -25,7 +32,6 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^2.5.0",
     "eslint-plugin-tsdoc": "^0.2.6",
-    "frontity": "^1.10.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lerna": "^3.22.1",
@@ -34,12 +40,14 @@
     "ts-jest": "^26.1.3",
     "typescript": "^3.9.7"
   },
-  "scripts": {
-    "test": "lerna run test:ci --stream",
-    "test:ci": "jest --clearCache && lerna run test:ci --stream",
-    "codecov": "curl -s https://codecov.io/bash | bash -s",
-    "prepare": "lerna bootstrap --hoist",
-    "reinstall": "lerna clean --yes && npm run prepare"
+  "dependencies": {
+    "frontity": "^1.11.1",
+    "@frontity/core": "^1.8.0",
+    "@frontity/wp-source": "^1.8.4",
+    "@frontity/tiny-router": "^1.2.1",
+    "@frontity/html2react": "^1.4.0",
+    "@10up/twentypress": "./packages/twentypress",
+    "@10up/frontity-elasticpress": "./packages/elasticpress"
   },
   "husky": {
     "hooks": {
@@ -50,9 +58,6 @@
     "*.js": [
       "eslint"
     ]
-  },
-  "engines": {
-    "node": ">=12.0.0"
   },
   "repository": {
     "type": "git",
