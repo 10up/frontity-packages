@@ -20,25 +20,74 @@ const buildResponseForPopulate = (normalizedResults) => {
 	} as Response;
 };
 
+const normalizeAuthor = (epAuthor) => {
+	return {
+		id: epAuthor.id,
+		name: epAuthor.display_name,
+		slug: epAuthor.login,
+		// TODO: update this
+		link: epAuthor.link || `http://elasticpress.test/author/${epAuthor.login}`,
+		description: epAuthor.description || '',
+		avatar_urls: epAuthor.avatar_urls || {},
+	};
+};
+
+const taxonomiesMapping = {
+	category: 'categories',
+	post_tag: 'tags',
+};
+
 const normalizeForFrontity = (results) => {
 	return results.map((result) => {
 		const keys = Object.keys(result);
 		const normalizedResult = {
 			_embedded: {
 				author: [],
+				'wp:term': [],
 			},
-			'wp:term': [],
 		};
 
 		keys.forEach((key) => {
+			// skil post_content as we'll use post_content_filtered
+			if (key === 'post_content') {
+				return;
+			}
+
 			// get rid of post_ prefixes and _filtered suffixes
 			const normalizedKey = key.replace('post_', '').replace('_filtered', '');
 			const finalNormalizedKey = normalizedKeyMapping[normalizedKey] || normalizedKey;
 
 			if (specialRenderedFields.includes(finalNormalizedKey)) {
 				normalizedResult[finalNormalizedKey] = { rendered: result[key], protected: false };
-			} else {
+			} else if (!embededFields.includes(finalNormalizedKey)) {
 				normalizedResult[finalNormalizedKey] = result[key];
+			}
+
+			if (finalNormalizedKey === 'author') {
+				normalizedResult[finalNormalizedKey] = result[key].id;
+				normalizedResult._embedded.author.push(normalizeAuthor(result[key]));
+			}
+
+			if (finalNormalizedKey === 'terms') {
+				const taxonomyTerms = result[key];
+
+				const taxonomies = Object.keys(taxonomyTerms);
+
+				taxonomies.forEach((taxonomy) => {
+					const terms = taxonomyTerms[taxonomy];
+					const termsForTaxonomy = terms.map((epTerm) => ({
+						id: epTerm.term_id,
+						taxonomy,
+						name: epTerm.name,
+						slug: epTerm.slug,
+						link: epTerm.link || `http://elasticpress.test/${epTerm.slug}`,
+					}));
+
+					normalizedResult._embedded['wp:term'].push(termsForTaxonomy);
+					normalizedResult[
+						taxonomiesMapping[taxonomy] || taxonomy
+					] = termsForTaxonomy.map((term) => term.id);
+				});
 			}
 		});
 
