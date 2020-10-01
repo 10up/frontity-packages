@@ -80,7 +80,11 @@ const normalizeForFrontity = (results) => {
 						taxonomy,
 						name: epTerm.name,
 						slug: epTerm.slug,
-						link: epTerm.link || `http://elasticpress.test/${epTerm.slug}`,
+						link:
+							epTerm.link ||
+							`http://elasticpress.test/${taxonomy.replace('post_', '')}/${
+								epTerm.slug
+							}`,
 					}));
 
 					normalizedResult._embedded['wp:term'].push(termsForTaxonomy);

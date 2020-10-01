@@ -49,7 +49,7 @@ const Theme = ({ state }) => {
         on the type of URL we are in. */}
 				<Main id="main">
 					<Switch>
-						<Loading when={data.isFetching && !data.isSearch} />
+						<Loading when={data.isFetching && !data?.query?.s} />
 						<SearchResults when={data.isSearch} />
 						<Archive when={data.isArchive} />
 						<Post when={data.isPostType} />
