@@ -1,6 +1,7 @@
 import { Handler } from '@frontity/wp-source/types';
 import { warn } from 'frontity';
 import { PostTypeArchiveWithSearchData } from '@frontity/source/types/data';
+import { Packages } from '../../types';
 
 const normalizedKeyMapping = {
 	permalink: 'link',
@@ -104,13 +105,12 @@ const normalizeForFrontity = (results) => {
  *
  * @param handlerParams
  */
-const searchHandler: Handler = async (handlerParams) => {
+const searchHandler: Handler<Packages> = async (handlerParams) => {
 	const { link, state, force, libraries } = handlerParams;
 	const { params } = state.source;
 	const perPage = params.per_page || 10;
 	const { parse, populate } = libraries.source;
 
-	// @ts-ignore
 	const { buildQuery, runEPQuery, searchQuery } = libraries.elasticpress;
 
 	const { page, query, route } = parse(link);
@@ -133,7 +133,6 @@ const searchHandler: Handler = async (handlerParams) => {
 		return;
 	}
 
-	// @ts-ignore
 	const endpoint = `${state.elasticpress.node}/${state.elasticpress.indexName}/_doc/_search`;
 
 	const { results, totalResults } = await runEPQuery(

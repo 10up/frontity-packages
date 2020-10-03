@@ -23,6 +23,7 @@ const settings = {
 						showOnList: false,
 						showOnPost: false,
 					},
+					autoPrefetch: 'in-view',
 				},
 			},
 		},
