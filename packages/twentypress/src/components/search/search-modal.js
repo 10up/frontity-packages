@@ -36,7 +36,7 @@ const SearchModal = ({ state, actions }) => {
 
 		// Get the input's value
 		const searchString = inputRef.current.value;
-		console.log(searchString);
+
 		// If the typed search string is not empty
 		// Better to trim write spaces as well
 		if (searchString.trim().length > 0) {

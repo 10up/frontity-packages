@@ -1,6 +1,7 @@
 import { runEPQuery, buildQuery, searchQuery } from '@10up/elasticpress-react';
+import { Pattern, Handler } from '@frontity/wp-source/types';
 import { fetch } from 'frontity';
-import ElasticPress from '../types';
+import ElasticPress, { Packages } from '../types';
 import { relatedPost, search } from './handlers';
 import { withElasticPress } from './hocs';
 
@@ -12,24 +13,25 @@ if (!global.fetch) {
 	global.fetch = fetch;
 }
 
+const epRelatedPostsHandler: Pattern<Handler<Packages>> = {
+	name: 'epRelatedPosts',
+	priority: 10,
+	pattern: '@posts/:postId(\\d+)/related',
+	func: relatedPost,
+};
+
+const epSearchHandler: Pattern<Handler<Packages>> = {
+	name: 'epSearch',
+	priority: 1,
+	pattern: '/',
+	func: search,
+};
+
 const elasticpress: ElasticPress = {
 	name: '@10up/frontity-elasticpress',
 	libraries: {
 		source: {
-			handlers: [
-				{
-					name: 'epRelatedPosts',
-					priority: 10,
-					pattern: '@posts/:postId(\\d+)/related',
-					func: relatedPost,
-				},
-				{
-					name: 'epSearch',
-					priority: 1,
-					pattern: '/',
-					func: search,
-				},
-			],
+			handlers: [epRelatedPostsHandler, epSearchHandler],
 		},
 		elasticpress: {
 			runEPQuery,

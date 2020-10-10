@@ -41,13 +41,15 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "frontity": "^1.11.1",
-    "@frontity/core": "^1.8.0",
-    "@frontity/wp-source": "^1.8.4",
-    "@frontity/tiny-router": "^1.2.1",
-    "@frontity/html2react": "^1.4.0",
+    "@10up/frontity-elasticpress": "./packages/elasticpress",
     "@10up/twentypress": "./packages/twentypress",
-    "@10up/frontity-elasticpress": "./packages/elasticpress"
+    "@frontity/core": "^1.8.0",
+    "@frontity/html2react": "^1.4.0",
+    "@frontity/mars-theme": "^1.4.3",
+    "@frontity/tiny-router": "^1.2.1",
+    "@frontity/twentytwenty-theme": "^1.2.1",
+    "@frontity/wp-source": "^1.8.4",
+    "frontity": "^1.11.1"
   },
   "husky": {
     "hooks": {

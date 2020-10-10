@@ -1,9 +1,19 @@
 import { Package } from 'frontity/types';
-import WpSource from '@frontity/wp-source/types';
+import WpSource, { Pattern, Handler } from '@frontity/wp-source/types';
 import Router from '@frontity/router/types';
-import Source from '@frontity/source/types';
+import { AuthorEntity } from '@frontity/source/types';
 
 export type WithElasticPressType = (Comp: Function) => Function;
+
+export type EPAuthor = {
+	id: number;
+	display_name: string;
+	login: string;
+	raw: string;
+	link?: string;
+	description?: AuthorEntity['description'];
+	avatar_urls?: AuthorEntity['avatar_urls'];
+};
 
 interface ElasticPress extends Package {
 	/**
@@ -19,12 +29,13 @@ interface ElasticPress extends Package {
 		 * The custom source handlers.
 		 */
 		source: {
-			handlers: WpSource['libraries']['source']['handlers'];
+			handlers: Pattern<Handler<Packages>>[];
 		};
 
 		elasticpress: {
-			buildQuery: () => {};
-			runEPQuery: () => {};
+			// @TODO: Improve typing
+			buildQuery: Function;
+			runEPQuery: Function;
 			searchQuery: Object;
 		};
 	};
@@ -65,6 +76,6 @@ interface ElasticPress extends Package {
 /**
  * The Packages type is a merge of all dependent packages.
  */
-export type Packages = ElasticPress & Router<Packages> & Source<Packages>;
+export type Packages = Omit<ElasticPress, 'name'> & Router<Packages> & Omit<WpSource, 'name'>;
 
 export default ElasticPress;

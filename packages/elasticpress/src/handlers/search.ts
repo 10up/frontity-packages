@@ -1,63 +1,20 @@
 import { Handler } from '@frontity/wp-source/types';
 import { warn } from 'frontity';
 import { PostTypeArchiveWithSearchData } from '@frontity/source/types/data';
-
-const normalizedKeyMapping = {
-	permalink: 'link',
-	name: 'slug',
-};
-
-const specialRenderedFields = ['title', 'content', 'excerpt'];
-const embededFields = ['author', 'terms'];
-
-const buildResponseForPopulate = (normalizedResults) => {
-	return {
-		json() {
-			return new Promise((resolve) => {
-				resolve(normalizedResults);
-			});
-		},
-	} as Response;
-};
-
-const normalizeForFrontity = (results) => {
-	return results.map((result) => {
-		const keys = Object.keys(result);
-		const normalizedResult = {
-			_embedded: {
-				author: [],
-			},
-			'wp:term': [],
-		};
-
-		keys.forEach((key) => {
-			// get rid of post_ prefixes and _filtered suffixes
-			const normalizedKey = key.replace('post_', '').replace('_filtered', '');
-			const finalNormalizedKey = normalizedKeyMapping[normalizedKey] || normalizedKey;
-
-			if (specialRenderedFields.includes(finalNormalizedKey)) {
-				normalizedResult[finalNormalizedKey] = { rendered: result[key], protected: false };
-			} else {
-				normalizedResult[finalNormalizedKey] = result[key];
-			}
-		});
-
-		return normalizedResult;
-	});
-};
+import { Packages } from '../../types';
+import { buildResponseForPopulate, normalizeForFrontity } from './utils/search';
 
 /**
  * A {@link Handler} for running search through elasticsearch
  *
  * @param handlerParams
  */
-const searchHandler: Handler = async (handlerParams) => {
+const searchHandler: Handler<Packages> = async (handlerParams) => {
 	const { link, state, force, libraries } = handlerParams;
 	const { params } = state.source;
 	const perPage = params.per_page || 10;
 	const { parse, populate } = libraries.source;
 
-	// @ts-ignore
 	const { buildQuery, runEPQuery, searchQuery } = libraries.elasticpress;
 
 	const { page, query, route } = parse(link);
@@ -80,7 +37,6 @@ const searchHandler: Handler = async (handlerParams) => {
 		return;
 	}
 
-	// @ts-ignore
 	const endpoint = `${state.elasticpress.node}/${state.elasticpress.indexName}/_doc/_search`;
 
 	const { results, totalResults } = await runEPQuery(
