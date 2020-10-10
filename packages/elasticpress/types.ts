@@ -1,8 +1,19 @@
 import { Package } from 'frontity/types';
 import WpSource, { Pattern, Handler } from '@frontity/wp-source/types';
 import Router from '@frontity/router/types';
+import { AuthorEntity } from '@frontity/source/types';
 
 export type WithElasticPressType = (Comp: Function) => Function;
+
+export type EPAuthor = {
+	id: number;
+	display_name: string;
+	login: string;
+	raw: string;
+	link?: string;
+	description?: AuthorEntity['description'];
+	avatar_urls?: AuthorEntity['avatar_urls'];
+};
 
 interface ElasticPress extends Package {
 	/**
