@@ -10,8 +10,17 @@ export type EPAuthor = {
 	display_name: string;
 	login: string;
 	raw: string;
+	/**
+	 * The link is not included by default in ElasticPress, but will be used if avaliable.
+	 */
 	link?: string;
+	/**
+	 * The description is not included by default, but will be used if avaliable.
+	 */
 	description?: AuthorEntity['description'];
+	/**
+	 * The avatar_urls are not included by default, but will be used if avaliable.
+	 */
 	avatar_urls?: AuthorEntity['avatar_urls'];
 };
 
@@ -21,6 +30,9 @@ export type EPTerm = {
 	name: string;
 	term_taxonomy_id: number;
 	temr_order: number;
+	/**
+	 * The link is not included by default, but will be used if avaliable
+	 */
 	link?: string;
 };
 
@@ -42,9 +54,15 @@ interface ElasticPress extends Package {
 		};
 
 		elasticpress: {
-			// @TODO: Improve typing
-			buildQuery: Function;
-			runEPQuery: Function;
+			buildQuery: (
+				epQuery: Object,
+				search: { searchTerm: string; perPage: number; offset: number },
+			) => Object;
+			runEPQuery: (
+				query: Object,
+				endpoint: string,
+				hitMap: (hit: { _source }) => Object,
+			) => { results: Object; totalResults: number };
 			searchQuery: Object;
 		};
 	};
