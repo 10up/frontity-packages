@@ -5,6 +5,7 @@ module.exports = {
     rules: {
       'import/no-unresolved': [2, { ignore: ['react']}],
       'import/no-extraneous-dependencies': 0,
+      'jsdoc/require-returns-type': 0
     },
     overrides: [
       {

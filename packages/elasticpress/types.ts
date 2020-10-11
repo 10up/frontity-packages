@@ -15,6 +15,15 @@ export type EPAuthor = {
 	avatar_urls?: AuthorEntity['avatar_urls'];
 };
 
+export type EPTerm = {
+	term_id: number;
+	slug: string;
+	name: string;
+	term_taxonomy_id: number;
+	temr_order: number;
+	link?: string;
+};
+
 interface ElasticPress extends Package {
 	/**
 	 * The name of this package.
