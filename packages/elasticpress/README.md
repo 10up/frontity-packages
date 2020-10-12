@@ -40,7 +40,7 @@ That's all you need.
 
 ## How it works
 
-This packages replaces the default search handler with a custom one that runs search queries directly in ElasticSearch index directly instead of WordPress.
+This packages replaces the default search handler with a custom one that runs search queries in ElasticSearch index directly instead of WordPress.
 
 In addition to better search results this also allow you to have real-time search results as you type. See an example [here](https://github.com/10up/frontity-packages/blob/develop/packages/twentypress/src/components/search/search-modal.js#L106).
 
