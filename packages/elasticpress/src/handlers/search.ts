@@ -51,7 +51,7 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 		},
 	);
 
-	const response = buildResponseForPopulate(normalizeForFrontity(results));
+	const response = buildResponseForPopulate(normalizeForFrontity(results, state));
 
 	const items = await populate({
 		response,

@@ -62,7 +62,7 @@ interface ElasticPress extends Package {
 				query: Object,
 				endpoint: string,
 				hitMap: (hit: { _source }) => Object,
-			) => { results: Object; totalResults: number };
+			) => { results: Object[]; totalResults: number };
 			searchQuery: Object;
 		};
 	};
