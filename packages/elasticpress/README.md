@@ -4,6 +4,8 @@
 
 [![Support Level](https://img.shields.io/badge/support-active-green.svg)](#support-level)
 
+![](screenshots/search.gif)
+
 ## Requirements
 
 * Elasticsearch per [ElasticPress requirements](https://github.com/10up/ElasticPress#requirements).
