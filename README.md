@@ -13,7 +13,7 @@
 1. `npm install`
 2. `npm run dev`
 
-You need to have a working WordPress environment with the ElasticPress plugin. This frontity project assumes you have a `elasticpress.test` WordPress environment. If you want to connect to a different WordPress environment, change the appropriate settings in `frontitity.settings.ts`.
+You need to have a working WordPress environment with the ElasticPress plugin. This frontity project assumes you have a `elasticpress.test` WordPress environment. If you want to connect to a different WordPress environment, change the appropriate settings in `frontity.settings.ts`.
 
 The individual packages are in the `packages` dir. `packages/twentypress` is a theme forked from the oficcial frontity theme which is just used for testing the custom packages.
 
