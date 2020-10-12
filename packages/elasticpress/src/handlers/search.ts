@@ -15,7 +15,7 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 	const perPage = params.per_page || 10;
 	const { parse, populate } = libraries.source;
 
-	const { buildQuery, runEPQuery, searchQuery } = libraries.elasticpress;
+	const { buildQuery, runEPQuery, searchQuery, getESEndpoint } = libraries.elasticpress;
 
 	const { page, query, route } = parse(link);
 
@@ -37,21 +37,19 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 		return;
 	}
 
-	const endpoint = `${state.elasticpress.node}/${state.elasticpress.indexName}/_doc/_search`;
-
 	const { results, totalResults } = await runEPQuery(
 		buildQuery(searchQuery, {
 			searchTerm: query.s,
 			offset: (page - 1) * perPage,
 			perPage,
 		}),
-		endpoint,
+		getESEndpoint('search', state.elasticpress),
 		(hit) => {
 			return hit._source;
 		},
 	);
 
-	const response = buildResponseForPopulate(normalizeForFrontity(results));
+	const response = buildResponseForPopulate(normalizeForFrontity(results, state));
 
 	const items = await populate({
 		response,
@@ -70,9 +68,7 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 			page,
 		});
 
-	// returns true if next page exists
 	const hasNewerPosts = page < totalPages;
-	// returns true if previous page exists
 	const hasOlderPosts = page > 1;
 
 	const newPageData: PostTypeArchiveWithSearchData = {

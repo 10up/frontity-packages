@@ -62,8 +62,9 @@ interface ElasticPress extends Package {
 				query: Object,
 				endpoint: string,
 				hitMap: (hit: { _source }) => Object,
-			) => { results: Object; totalResults: number };
+			) => { results: Object[]; totalResults: number };
 			searchQuery: Object;
+			getESEndpoint: (type: string, config: ElasticPress['state']['elasticpress']) => string;
 		};
 	};
 
@@ -91,11 +92,16 @@ interface ElasticPress extends Package {
 			indexName: string;
 
 			/**
+			 * The elasticpress.io endpoint
+			 */
+			elasticpressio?: string;
+
+			/**
 			 * Whether to load initial data.
 			 *
 			 * @default true
 			 */
-			loadInitialData: boolean;
+			loadInitialData?: boolean;
 		};
 	};
 }

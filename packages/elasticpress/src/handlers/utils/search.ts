@@ -1,16 +1,19 @@
 import { AuthorEntity, TaxonomyEntity } from '@frontity/source/types';
-import { EPAuthor, EPTerm } from '../../../types';
+import { State } from 'frontity/types';
+import { EPAuthor, EPTerm, Packages } from '../../../types';
 
 /**
  * Normalizes an author coming from ElasticPress into Frontity schema.
  *
- * @param epAuthor
+ * @param epAuthor The author object coming from ElasticPress
+ * @param state The frontity state
  *
- * @returns
+ * @returns A normalized author
  */
-export function normalizeAuthor(epAuthor: EPAuthor): AuthorEntity {
-	// TODO: update this
-	const link = epAuthor.link || `http://elasticpress.test/author/${epAuthor.login}`;
+export function normalizeAuthor(epAuthor: EPAuthor, state: State<Packages>): AuthorEntity {
+	const apiRoot = state.source.api.replace('/wp-json', '');
+
+	const link = epAuthor.link || `${apiRoot}/author/${epAuthor.login}`;
 
 	return {
 		id: epAuthor.id,
@@ -26,15 +29,20 @@ export function normalizeAuthor(epAuthor: EPAuthor): AuthorEntity {
 /**
  * Normalizes an term coming from ElasticPress into Frontity Schema
  *
- * @param taxonomy
- * @param epTerm
+ * @param taxonomy The taxonomy this term belongs to.
+ * @param epTerm The ElasticPress term object.
+ * @param state The frontity state.
  *
- * @returns
+ * @returns A normnalized term
  */
-export function normalizeTerm(taxonomy: string, epTerm: EPTerm): TaxonomyEntity {
-	// TODO: update this
-	const link =
-		epTerm.link || `http://elasticpress.test/${taxonomy.replace('post_', '')}/${epTerm.slug}`;
+export function normalizeTerm(
+	taxonomy: string,
+	epTerm: EPTerm,
+	state: State<Packages>,
+): TaxonomyEntity {
+	const apiRoot = state.source.api.replace('/wp-json', '');
+
+	const link = epTerm.link || `${apiRoot}/${taxonomy.replace('post_', '')}/${epTerm.slug}`;
 
 	return {
 		id: epTerm.term_id,
@@ -121,10 +129,10 @@ function getPublicTaxonomySlug(taxonomy: string): string {
  * Normalizes an ElasticPress response for the Frontity schema.
  *
  * @param results The raw ElasticPress/ElasticSearch response.
- *
+ * @param state The frontity state
  * @returns The normalized respose.
  */
-export function normalizeForFrontity(results) {
+export function normalizeForFrontity(results: Object[], state: State<Packages>) {
 	return results.map((result) => {
 		const keys = Object.keys(result);
 		const normalizedResult = {
@@ -150,7 +158,7 @@ export function normalizeForFrontity(results) {
 
 			if (normalizedKey === 'author') {
 				normalizedResult[normalizedKey] = result[key].id;
-				normalizedResult._embedded.author.push(normalizeAuthor(result[key]));
+				normalizedResult._embedded.author.push(normalizeAuthor(result[key], state));
 			}
 
 			if (normalizedKey === 'terms') {
@@ -160,7 +168,7 @@ export function normalizeForFrontity(results) {
 
 				taxonomies.forEach((taxonomy) => {
 					const termsForTaxonomy = taxonomyTerms[taxonomy].map((epTerm) =>
-						normalizeTerm(taxonomy, epTerm),
+						normalizeTerm(taxonomy, epTerm, state),
 					);
 					const termsForTaxonomyIds = termsForTaxonomy.map((term) => term.id);
 					normalizedResult._embedded['wp:term'].push(termsForTaxonomy);
