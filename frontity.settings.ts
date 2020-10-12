@@ -14,10 +14,9 @@ const settings = {
 				theme: {
 					menu: [
 						['Home', '/'],
-						['Nature', '/category/nature/'],
-						['Travel', '/category/travel/'],
-						['Japan', '/tag/japan/'],
-						['About Us', '/about-us/'],
+						['Art', '/category/art/'],
+						['Art-Design', '/category/art-design/'],
+						['Africa', '/category/africa/'],
 					],
 					featured: {
 						showOnList: false,
