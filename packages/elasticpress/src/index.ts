@@ -1,4 +1,4 @@
-import { runEPQuery, buildQuery, searchQuery } from '@10up/elasticpress-react';
+import { runEPQuery, buildQuery, searchQuery, getESEndpoint } from '@10up/elasticpress-react';
 import { Pattern, Handler } from '@frontity/wp-source/types';
 import { fetch } from 'frontity';
 import ElasticPress, { Packages } from '../types';
@@ -37,6 +37,7 @@ const elasticpress: ElasticPress = {
 			runEPQuery,
 			buildQuery,
 			searchQuery,
+			getESEndpoint,
 		},
 	},
 	state: {

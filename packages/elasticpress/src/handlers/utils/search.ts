@@ -11,7 +11,7 @@ import { EPAuthor, EPTerm, Packages } from '../../../types';
  * @returns A normalized author
  */
 export function normalizeAuthor(epAuthor: EPAuthor, state: State<Packages>): AuthorEntity {
-	const apiRoot = state.source.api.replace('wp-json', '');
+	const apiRoot = state.source.api.replace('/wp-json', '');
 
 	const link = epAuthor.link || `${apiRoot}/author/${epAuthor.login}`;
 
@@ -40,7 +40,8 @@ export function normalizeTerm(
 	epTerm: EPTerm,
 	state: State<Packages>,
 ): TaxonomyEntity {
-	const apiRoot = state.source.api.replace('wp-json', '');
+	const apiRoot = state.source.api.replace('/wp-json', '');
+
 	const link = epTerm.link || `${apiRoot}/${taxonomy.replace('post_', '')}/${epTerm.slug}`;
 
 	return {
