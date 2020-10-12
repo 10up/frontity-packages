@@ -38,6 +38,7 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 	}
 
 	const { results, totalResults } = await runEPQuery(
+		query.s,
 		buildQuery(searchQuery, {
 			searchTerm: query.s,
 			offset: (page - 1) * perPage,

@@ -31,7 +31,7 @@ const settings = {
 			name: '@frontity/wp-source',
 			state: {
 				source: {
-					api: 'http://elasticpress.test/wp-json',
+					api: 'https://demo.elasticpress.io/wp-json',
 				},
 			},
 		},
@@ -41,8 +41,8 @@ const settings = {
 			name: '@10up/frontity-elasticpress',
 			state: {
 				elasticpress: {
-					node: 'http://elasticpress.test/__elasticsearch',
-					indexName: 'elasticpresstest-post-1',
+					node: 'https://thorstentestessential.clients.hosted-elasticpress.io',
+					indexName: 'thorstentestessential--demoelasticpressio-post-1',
 					loadInitialData: true,
 				},
 			},

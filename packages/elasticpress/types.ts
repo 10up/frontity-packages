@@ -59,6 +59,7 @@ interface ElasticPress extends Package {
 				search: { searchTerm: string; perPage: number; offset: number },
 			) => Object;
 			runEPQuery: (
+				searchTerm: string,
 				query: Object,
 				endpoint: string,
 				hitMap: (hit: { _source }) => Object,
@@ -90,11 +91,6 @@ interface ElasticPress extends Package {
 			 * @example 'elasticpresstest-post-1';
 			 */
 			indexName: string;
-
-			/**
-			 * The elasticpress.io endpoint
-			 */
-			elasticpressio?: string;
 
 			/**
 			 * Whether to load initial data.
