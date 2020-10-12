@@ -46,7 +46,7 @@ In addition to better search results this also allow you to have real-time searc
 
 You need to ensure your ElasticSearch index is not fully exposed to the public. You most likely want to add some layer around your ElasticSearch index to lock down your index to avoid unwanted queries or requests.
 
-
+Check out [ElasticPress.io](https://www.elasticpress.io/) for a secure ElasticSearch service that was built for ElasticPress.
 
 
 ## Like what you see?
