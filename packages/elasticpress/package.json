@@ -1,6 +1,6 @@
 {
   "name": "@10up/frontity-elasticpress",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Official ElasticPress integration for Frontity",
   "main": "src/index.ts",
   "keywords": [
