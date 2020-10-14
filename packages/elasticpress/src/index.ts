@@ -20,7 +20,19 @@ const epRelatedPostsHandler: Pattern<Handler<Packages>> = {
 	func: relatedPost,
 };
 
-export const searchRegExp = '^(\\/page\\/\\d+)?\\/?(\\?|[^/]+&)s=[^&$]+';
+/**
+ * Regexp to match homepage search URLs.
+ *
+ * It works like this:
+ * 1. Optional initial slash to match URLs like domain.com?s=text.
+ * 2. Required "?".
+ * 3. Optional number of query parameters before "s=text".
+ * 4. Required "s=text".
+ *
+ * Matching the pagination is not required because Frontity strips it out before
+ * doing the match.
+ */
+export const searchRegExp = '^\\/?\\?(|[^/]+&)?s=[^&$]+';
 
 const epSearchHandler: Pattern<Handler<Packages>> = {
 	name: 'epSearch',
