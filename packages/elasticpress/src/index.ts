@@ -20,10 +20,12 @@ const epRelatedPostsHandler: Pattern<Handler<Packages>> = {
 	func: relatedPost,
 };
 
+export const searchRegExp = '^(\\/page\\/\\d+)?\\/?(\\?|[^/]+&)s=[^&$]+';
+
 const epSearchHandler: Pattern<Handler<Packages>> = {
 	name: 'epSearch',
-	priority: 1,
-	pattern: '/',
+	priority: 5,
+	pattern: `RegExp:${searchRegExp}`,
 	func: search,
 };
 
