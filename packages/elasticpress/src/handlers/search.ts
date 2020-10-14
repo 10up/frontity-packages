@@ -1,5 +1,5 @@
 import { Handler } from '@frontity/wp-source/types';
-import { PostTypeArchiveWithSearchData } from '@frontity/source/types/data';
+import { PostArchiveWithSearchData } from '@frontity/source/types/data';
 import { Packages } from '../../types';
 import { buildResponseForPopulate, normalizeForFrontity } from './utils/search';
 
@@ -52,7 +52,7 @@ const searchHandler: Handler<Packages> = async ({ link, state, force, libraries 
 	const hasNewerPosts = page < totalPages;
 	const hasOlderPosts = page > 1;
 
-	const newPageData: PostTypeArchiveWithSearchData = {
+	const newPageData: PostArchiveWithSearchData = {
 		type: 'post',
 		items,
 		total: totalResults,
@@ -63,7 +63,6 @@ const searchHandler: Handler<Packages> = async ({ link, state, force, libraries 
 		isReady: true,
 		isSearch: true,
 		searchQuery: query.s,
-		// @ts-ignore
 		isPostArchive: true,
 		// Add next and previous if they exist.
 		...(hasOlderPosts && { previous: getPageLink(page - 1) }),
