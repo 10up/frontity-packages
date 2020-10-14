@@ -6,11 +6,11 @@ import { relatedPost, search } from './handlers';
 import { withElasticPress } from './hocs';
 
 // polyfill global fetch
-const global =
+const theGlobal =
 	(typeof globalThis !== 'undefined' && globalThis) || (typeof window !== 'undefined' && window);
 
-if (!global.fetch) {
-	global.fetch = fetch;
+if (!theGlobal.fetch) {
+	theGlobal.fetch = fetch;
 }
 
 const epRelatedPostsHandler: Pattern<Handler<Packages>> = {
