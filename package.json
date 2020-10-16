@@ -62,10 +62,6 @@
       "eslint"
     ]
   },
-  "prettier": {
-    "singleQuote": true,
-    "useTabs": true
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/10up/frontity-packages.git"
