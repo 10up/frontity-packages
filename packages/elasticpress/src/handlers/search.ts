@@ -1,6 +1,5 @@
 import { Handler } from '@frontity/wp-source/types';
-import { warn } from 'frontity';
-import { PostTypeArchiveWithSearchData } from '@frontity/source/types/data';
+import { PostArchiveWithSearchData } from '@frontity/source/types/data';
 import { Packages } from '../../types';
 import { buildResponseForPopulate, normalizeForFrontity } from './utils/search';
 
@@ -9,8 +8,7 @@ import { buildResponseForPopulate, normalizeForFrontity } from './utils/search';
  *
  * @param handlerParams
  */
-const searchHandler: Handler<Packages> = async (handlerParams) => {
-	const { link, state, force, libraries } = handlerParams;
+const searchHandler: Handler<Packages> = async ({ link, state, force, libraries }) => {
 	const { params } = state.source;
 	const perPage = params.per_page || 10;
 	const { parse, populate } = libraries.source;
@@ -18,24 +16,6 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 	const { buildQuery, runEPQuery, searchQuery, getESEndpoint } = libraries.elasticpress;
 
 	const { page, query, route } = parse(link);
-
-	// if this isn't a search query we fallback to the default handler
-	if (!query.s) {
-		const originalHandler = libraries.source.handlers.find(
-			(handler) => handler.name !== 'epSearch' && handler.pattern === '/',
-		);
-
-		if (!originalHandler || typeof originalHandler.func !== 'function') {
-			warn(
-				'There is something wrong with your frontity setup. Could not find original postHandler',
-			);
-
-			return;
-		}
-
-		await originalHandler.func(handlerParams);
-		return;
-	}
 
 	const { results, totalResults } = await runEPQuery(
 		query.s,
@@ -72,7 +52,7 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 	const hasNewerPosts = page < totalPages;
 	const hasOlderPosts = page > 1;
 
-	const newPageData: PostTypeArchiveWithSearchData = {
+	const newPageData: PostArchiveWithSearchData = {
 		type: 'post',
 		items,
 		total: totalResults,
@@ -81,15 +61,12 @@ const searchHandler: Handler<Packages> = async (handlerParams) => {
 		isPostTypeArchive: true,
 		isFetching: false,
 		isReady: true,
-		// @ts-ignore
+		isSearch: true,
+		searchQuery: query.s,
 		isPostArchive: true,
-
 		// Add next and previous if they exist.
 		...(hasOlderPosts && { previous: getPageLink(page - 1) }),
 		...(hasNewerPosts && { next: getPageLink(page + 1) }),
-
-		// Add search data if this is a search.
-		...(query.s && { isSearch: true, searchQuery: query.s }),
 	};
 
 	Object.assign(currentPageData, newPageData);
