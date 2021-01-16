@@ -9,7 +9,7 @@ const settings = {
 	},
 	packages: [
 		{
-			name: '@10up/twentypress',
+			name: '@10up/frontity-theme-scaffold',
 			state: {
 				theme: {
 					menu: [
@@ -30,7 +30,7 @@ const settings = {
 			name: '@frontity/wp-source',
 			state: {
 				source: {
-					api: 'https://demo.elasticpress.io/wp-json',
+					url: 'https://test.frontity.org',
 				},
 			},
 		},

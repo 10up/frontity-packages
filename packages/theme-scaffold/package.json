@@ -1,0 +1,15 @@
+{
+  "name": "@10up/frontity-theme-scaffold",
+  "version": "1.0.0",
+  "description": "10up's frontity theme scaffold.",
+  "keywords": [
+    "frontity",
+    "frontity-theme-scaffold"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "frontity": "^1.13.0",
+    "@frontity/components": "^1.3.3",
+    "@frontity/html2react": "^1.3.4"
+  }
+}
