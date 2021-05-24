@@ -1,13 +1,13 @@
-import WebpackConfig from '../types';
+import TenUpBuildConfig from '../types';
 import Root from './components/Root';
 
-const settings: WebpackConfig = {
+const settings: TenUpBuildConfig = {
 	name: '@10up/frontity-webpack-config',
 	roots: {
 		TenUpBuildConfig: Root,
 	},
 	state: {
-		tenupbuildconfig: {
+		TenUpBuildConfig: {
 			hasStaticCSS: false,
 			publicPath: '/static',
 		},

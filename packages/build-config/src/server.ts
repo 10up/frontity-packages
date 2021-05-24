@@ -1,25 +1,25 @@
-import WebpackConfig from '../types';
+import TenUpBuildConfig from '../types';
 import client from './client';
 
 const fs = require('fs');
 const path = require('path');
 
-const settings: WebpackConfig = {
+const settings: TenUpBuildConfig = {
 	...client,
 	actions: {
-		tenupbuildconfig: {
-			beforeSSR: ({ state }) => {
+		TenUpBuildConfig: {
+			beforeSSR: ({ state }: TenUpBuildConfig) => {
 				const cssPath = path.join(
 					process.cwd(),
 					'build',
-					state.tenupbuildconfig.publicPath,
+					state.TenUpBuildConfig.publicPath,
 					'css',
 					'index.css',
 				);
 
 				fs.stat(cssPath, (error, stats) => {
 					if (!error && stats.isFile()) {
-						state.tenupbuildconfig.hasStaticCSS = true;
+						state.TenUpBuildConfig.hasStaticCSS = true;
 					}
 				});
 			},

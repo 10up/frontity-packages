@@ -1,12 +1,12 @@
 import { Package } from 'frontity/types';
 
-interface WebpackConfig extends Package {
+interface TenUpBuildConfig extends Package {
 	/**
 	 * The name of this package.
 	 */
 	name: '@10up/frontity-webpack-config';
 	state?: {
-		tenupbuildconfig: {
+		TenUpBuildConfig: {
 			hasStaticCSS?: boolean;
 			publicPath?: string;
 		};
@@ -17,6 +17,6 @@ interface WebpackConfig extends Package {
 /**
  * The Packages type is a merge of all dependent packages.
  */
-export type Packages = WebpackConfig;
+export type Packages = TenUpBuildConfig;
 
-export default WebpackConfig;
+export default TenUpBuildConfig;

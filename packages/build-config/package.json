@@ -1,7 +1,7 @@
 {
   "name": "@10up/frontity-build-config",
   "version": "0.1.0",
-  "description": "10up's frontity Webpack customizations",
+  "description": "10up's frontity build customizations",
   "keywords": [
     "frontity",
     "frontity-webpack-config",

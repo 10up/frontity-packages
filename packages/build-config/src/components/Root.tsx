@@ -5,11 +5,11 @@ import { Packages } from '../../types';
 const Root: FC = () => {
 	const { state } = useConnect<Packages>();
 
-	if (!state.tenupbuildconfig.hasStaticCSS) {
+	if (!state.TenUpBuildConfig.hasStaticCSS) {
 		return null;
 	}
 
-	const cssPath = `${state.tenupbuildconfig.publicPath}/css/index.css`;
+	const cssPath = `${state.TenUpBuildConfig.publicPath}/css/index.css`;
 	return (
 		<Head>
 			<link rel="stylesheet" href={cssPath} />
