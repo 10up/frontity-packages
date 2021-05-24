@@ -1,0 +1,39 @@
+{
+  "name": "@10up/frontity-webpack-config",
+  "version": "0.1.0",
+  "description": "10up's frontity Webpack customizations",
+  "main": "src/index.ts",
+  "keywords": [
+    "frontity",
+    "frontity-webpack-config",
+    "webpack"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/10up/frontity-packages.git"
+  },
+  "bugs": {
+    "url": "https://github.com/10up/frontity-packages/issues"
+  },
+  "scripts": {
+    "test:ci": "../../node_modules/.bin/jest --ci --coverage",
+    "test": "../../node_modules/.bin/jest --watch",
+    "test:inspect": "node --inspect ../../node_modules/.bin/jest --watch --no-cache --runInBand"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "sass-loader": "^10.2.0",
+    "sass": "^1.33.0",
+    "css-loader": "^5.2.5",
+    "postcss-loader": "^5.0.0",
+    "postcss": "^8.2.6",
+    "postcss-css-variables": "^0.17.0",
+    "postcss-import": "^14.0.0",
+    "postcss-mixins": "^7.0.3",
+    "postcss-nested": "^5.0.5",
+    "postcss-object-fit-images": "^1.1.2",
+    "postcss-preset-env": "^6.7.0"
+  }
+}
