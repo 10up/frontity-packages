@@ -14,6 +14,9 @@ import SkipLink from './styles/skip-link';
 import MetaTitle from './page-meta-title';
 import PageError from './page-error';
 
+import '../assets/index.scss';
+import '../assets/index.css';
+
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.

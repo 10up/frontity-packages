@@ -1,11 +1,15 @@
 import { BabelCustomizer, WebpackCustomizer } from '@frontity/types';
 
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 export const webpack: WebpackCustomizer = ({ config, mode }) => {
 	config.module.rules.push({
 		test: /\.(sc|sa)ss$/,
 		use: [
+			{
+				loader: MiniCSSExtractPlugin.loader,
+			},
 			{
 				loader: require.resolve('css-loader'),
 				options: {
@@ -30,6 +34,9 @@ export const webpack: WebpackCustomizer = ({ config, mode }) => {
 		test: /\.css$/,
 		use: [
 			{
+				loader: MiniCSSExtractPlugin.loader,
+			},
+			{
 				loader: require.resolve('css-loader'),
 				options: {
 					sourceMap: mode === 'development',
@@ -40,12 +47,21 @@ export const webpack: WebpackCustomizer = ({ config, mode }) => {
 				loader: require.resolve('postcss-loader'),
 				options: {
 					postcssOptions: {
-						config: path.join(path.dirname(__dirname), 'config', 'postcss.config.js'),
+						config: path.join(__dirname, 'src', 'config', 'postcss.config.js'),
 					},
 				},
 			},
 		],
 	};
+
+	config.plugins.push(
+		new MiniCSSExtractPlugin({
+			filename: () => {
+				return `${config.output.publicPath}/css/index.css`;
+			},
+			chunkFilename: '[id].css',
+		}),
+	);
 };
 
 export const babel: BabelCustomizer = ({ config, mode }) => {

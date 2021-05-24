@@ -1,5 +1,5 @@
 {
-  "name": "frontity-packages",
+  "name": "@10up/frontity-packages",
   "version": "1.0.0",
   "private": true,
   "description": "10up's collection of frontity packages",
@@ -13,8 +13,7 @@
     "build": "frontity build",
     "serve": "frontity serve",
     "lint": "10up-toolkit lint-js",
-    "format": "10up-toolkit format-js",
-    "postinstall": "(cd packages/elasticpress && npm install)"
+    "format": "10up-toolkit format-js"
   },
   "devDependencies": {
     "10up-toolkit": "^1.0.5",
@@ -27,11 +26,11 @@
   "dependencies": {
     "@10up/frontity-elasticpress": "./packages/elasticpress",
     "@10up/twentypress": "./packages/twentypress",
+    "@10up/frontity-build-config": "./packages/build-config",
     "@frontity/core": "^1.14.0",
     "@frontity/html2react": "^1.7.0",
     "@frontity/mars-theme": "^1.5.2",
     "@frontity/tiny-router": "^1.4.2",
-    "@frontity/twentytwenty-theme": "^1.3.3",
     "@frontity/wp-source": "^1.11.4",
     "frontity": "^1.15.0"
   },
