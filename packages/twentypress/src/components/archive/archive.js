@@ -39,6 +39,7 @@ const Archive = ({ state, showExcerpt, showMedia }) => {
 			{data.items.map(({ type, id }, index) => {
 				const isLastArticle = index === data.items.length - 1;
 				const item = state.source[type][id];
+
 				// Render one Item component for each one.
 				return (
 					<Fragment key={item.id}>

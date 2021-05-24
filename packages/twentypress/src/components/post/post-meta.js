@@ -33,7 +33,7 @@ export const PostMetaList = styled.ul`
 const PostMeta = ({ state, item }) => {
 	const author = state.source.author[item.author];
 
-	if (!author.link) {
+	if (!author?.link) {
 		return null;
 	}
 

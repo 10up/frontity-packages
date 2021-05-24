@@ -1,6 +1,6 @@
 {
   "name": "@10up/frontity-elasticpress",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Official ElasticPress integration for Frontity",
   "main": "src/index.ts",
   "keywords": [
@@ -28,7 +28,7 @@
     "@testing-library/react": "^10.4.7"
   },
   "dependencies": {
-    "@10up/elasticpress-react": "^2.0.0-rc.3",
+    "@10up/elasticpress-react": "^2.0.0-rc.5",
     "@frontity/router": "1.1.1",
     "@frontity/source": "1.3.0",
     "@frontity/wp-source": "^1.8.4",

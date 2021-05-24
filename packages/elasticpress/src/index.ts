@@ -6,11 +6,11 @@ import { relatedPost, search } from './handlers';
 import { withElasticPress } from './hocs';
 
 // polyfill global fetch
-const global =
+const theGlobal =
 	(typeof globalThis !== 'undefined' && globalThis) || (typeof window !== 'undefined' && window);
 
-if (!global.fetch) {
-	global.fetch = fetch;
+if (!theGlobal.fetch) {
+	theGlobal.fetch = fetch;
 }
 
 const epRelatedPostsHandler: Pattern<Handler<Packages>> = {
@@ -20,10 +20,24 @@ const epRelatedPostsHandler: Pattern<Handler<Packages>> = {
 	func: relatedPost,
 };
 
+/**
+ * Regexp to match homepage search URLs.
+ *
+ * It works like this:
+ * 1. Optional initial slash to match URLs like domain.com?s=text.
+ * 2. Required "?".
+ * 3. Optional number of query parameters before "s=text".
+ * 4. Required "s=text".
+ *
+ * Matching the pagination is not required because Frontity strips it out before
+ * doing the match.
+ */
+export const searchRegExp = '^\\/?\\?(|[^/]+&)?s=[^&$]+';
+
 const epSearchHandler: Pattern<Handler<Packages>> = {
 	name: 'epSearch',
-	priority: 1,
-	pattern: '/',
+	priority: 5,
+	pattern: `RegExp:${searchRegExp}`,
 	func: search,
 };
 

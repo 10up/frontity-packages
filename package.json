@@ -4,7 +4,7 @@
   "private": true,
   "description": "10up's collection of frontity packages",
   "engines": {
-    "node": ">=10.0.0",
+    "node": "12.x",
     "npm": ">=6.0.0"
   },
   "scripts": {
@@ -13,7 +13,8 @@
     "build": "frontity build",
     "serve": "frontity serve",
     "lint": "10up-toolkit lint-js",
-    "format": "10up-toolkit format-js"
+    "format": "10up-toolkit format-js",
+    "postinstall": "(cd packages/elasticpress && npm install)"
   },
   "devDependencies": {
     "10up-toolkit": "^1.0.5",
