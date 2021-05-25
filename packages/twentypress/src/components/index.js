@@ -16,6 +16,7 @@ import PageError from './page-error';
 
 import '../assets/index.scss';
 import '../assets/index.css';
+import styles from './index.module.css';
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -44,7 +45,7 @@ const Theme = ({ state }) => {
 				Skip to main content
 			</SkipLink>
 
-			<div style={{ minHeight: 'calc(100vh - 190px)' }}>
+			<div className={styles.mainContent}>
 				{/* Add the header of the site. */}
 				<Header />
 

@@ -3,13 +3,19 @@ import { BabelCustomizer, WebpackCustomizer } from '@frontity/types';
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-export const webpack: WebpackCustomizer = ({ config, mode }) => {
+export const webpack: WebpackCustomizer = ({ config, mode, target }) => {
+	const styleOrExtractionPlugin =
+		mode === 'development' && ['es5', 'module'].includes(target)
+			? {
+					loader: 'style-loader',
+			  }
+			: { loader: MiniCSSExtractPlugin.loader };
+
 	config.module.rules.push({
 		test: /\.(sc|sa)ss$/,
+		exclude: /\.module\.css$/,
 		use: [
-			{
-				loader: MiniCSSExtractPlugin.loader,
-			},
+			styleOrExtractionPlugin,
 			{
 				loader: require.resolve('css-loader'),
 				options: {
@@ -32,10 +38,9 @@ export const webpack: WebpackCustomizer = ({ config, mode }) => {
 
 	config.module.rules[cssRule] = {
 		test: /\.css$/,
+		exclude: /\.module\.css$/,
 		use: [
-			{
-				loader: MiniCSSExtractPlugin.loader,
-			},
+			styleOrExtractionPlugin,
 			{
 				loader: require.resolve('css-loader'),
 				options: {
@@ -54,12 +59,37 @@ export const webpack: WebpackCustomizer = ({ config, mode }) => {
 		],
 	};
 
+	// CSS Modules
+	config.module.rules.push({
+		test: /\.module\.css$/,
+		use: [
+			styleOrExtractionPlugin,
+			{
+				loader: require.resolve('css-loader'),
+				options: {
+					sourceMap: mode === 'development',
+					url: true,
+					import: false,
+					modules: true,
+				},
+			},
+			{
+				loader: require.resolve('postcss-loader'),
+				options: {
+					postcssOptions: {
+						config: path.join(__dirname, 'src', 'config', 'postcss.config.js'),
+					},
+				},
+			},
+		],
+	});
+
 	config.plugins.push(
 		new MiniCSSExtractPlugin({
 			filename: () => {
 				return `${config.output.publicPath}/css/index.css`;
 			},
-			chunkFilename: '[id].css',
+			chunkFilename: `${config.output.publicPath}/css/[id].css`,
 		}),
 	);
 };

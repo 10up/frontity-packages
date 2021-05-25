@@ -23,6 +23,7 @@
   "devDependencies": {
   },
   "dependencies": {
+    "style-loader": "^1.3.0",
     "sass-loader": "^10.2.0",
     "sass": "^1.33.0",
     "css-loader": "^5.2.5",
