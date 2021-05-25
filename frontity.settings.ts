@@ -1,5 +1,5 @@
 const settings = {
-	name: 'frontity-packages',
+	name: '10up-frontity-packages',
 	state: {
 		frontity: {
 			url: 'https://test.frontity.org',
@@ -8,6 +8,7 @@ const settings = {
 		},
 	},
 	packages: [
+		'@10up/frontity-build-config',
 		{
 			name: '@10up/twentypress',
 			state: {
@@ -30,22 +31,12 @@ const settings = {
 			name: '@frontity/wp-source',
 			state: {
 				source: {
-					api: 'https://demo.elasticpress.io/wp-json',
+					url: 'https://test.frontity.org',
 				},
 			},
 		},
 		'@frontity/tiny-router',
 		'@frontity/html2react',
-		{
-			name: '@10up/frontity-elasticpress',
-			state: {
-				elasticpress: {
-					node: 'https://thorstentestessential.clients.hosted-elasticpress.io',
-					indexName: 'thorstentestessential--demoelasticpressio-post-1',
-					loadInitialData: true,
-				},
-			},
-		},
 	],
 };
 
