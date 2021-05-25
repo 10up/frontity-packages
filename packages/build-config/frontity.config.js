@@ -1,9 +1,7 @@
-import { BabelCustomizer, WebpackCustomizer } from '@frontity/types';
-
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-export const webpack: WebpackCustomizer = ({ config, mode, target }) => {
+module.exports.webpack = ({ config, mode, target }) => {
 	const styleOrExtractionPlugin =
 		mode === 'development' && ['es5', 'module'].includes(target)
 			? {
@@ -94,7 +92,7 @@ export const webpack: WebpackCustomizer = ({ config, mode, target }) => {
 	);
 };
 
-export const babel: BabelCustomizer = ({ config, mode }) => {
+module.exports.babel = ({ config, mode }) => {
 	if (mode === 'production') {
 		config.plugins.push([
 			require.resolve('babel-plugin-transform-react-remove-prop-types'),
