@@ -34,28 +34,30 @@ module.exports.webpack = ({ config, mode, target }) => {
 		(rule) => rule.test.toString() === /\.css$/.toString(),
 	);
 
-	config.module.rules[cssRule] = {
-		test: /\.css$/,
-		exclude: /\.module\.css$/,
-		use: [
-			styleOrExtractionPlugin,
-			{
-				loader: require.resolve('css-loader'),
-				options: {
-					sourceMap: mode === 'development',
-					url: true,
-				},
-			},
-			{
-				loader: require.resolve('postcss-loader'),
-				options: {
-					postcssOptions: {
-						config: path.join(__dirname, 'src', 'config', 'postcss.config.js'),
+	if (cssRule >= 0) {
+		config.module.rules[cssRule] = {
+			test: /\.css$/,
+			exclude: /\.module\.css$/,
+			use: [
+				styleOrExtractionPlugin,
+				{
+					loader: require.resolve('css-loader'),
+					options: {
+						sourceMap: mode === 'development',
+						url: true,
 					},
 				},
-			},
-		],
-	};
+				{
+					loader: require.resolve('postcss-loader'),
+					options: {
+						postcssOptions: {
+							config: path.join(__dirname, 'src', 'config', 'postcss.config.js'),
+						},
+					},
+				},
+			],
+		};
+	}
 
 	// CSS Modules
 	config.module.rules.push({
@@ -80,6 +82,22 @@ module.exports.webpack = ({ config, mode, target }) => {
 				},
 			},
 		],
+	});
+
+	// svg
+	const fileLoaderRule = config.module.rules.findIndex(
+		(rule) => rule.test.toString() === /\.(png|jpe?g|gif|svg)$/.toString(),
+	);
+
+	if (fileLoaderRule >= 0) {
+		// remove svg from default svg loader
+		config.module.rules[fileLoaderRule].test = /\.(png|jpe?g|gif)$/;
+	}
+
+	// add @svgr/webpack
+	config.module.rules.push({
+		test: /\.svg$/,
+		use: ['@svgr/webpack'],
 	});
 
 	config.plugins.push(
