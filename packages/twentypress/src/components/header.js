@@ -7,7 +7,7 @@ import SearchModal from './search/search-modal';
 import MobileSearchButton from './mobile/search-button';
 import MobileMenuButton from './mobile/menu-button';
 import MobileMenuModal from './mobile/menu-modal';
-import Logo from '../assets/10up-logo-full.svg';
+import LogoURL, { SVG as Logo } from '../assets/10up-logo-full.svg';
 
 const Header = ({ state }) => {
 	const { title, description } = state.frontity;
@@ -17,6 +17,7 @@ const Header = ({ state }) => {
 		<PageHeader bg={headerBg} id="site-header">
 			<HeaderInner>
 				<TitleWrapper>
+					<img src={LogoURL} alt="10up logo" />
 					<Logo />
 					{/* Search button on mobile */}
 					{state.theme.showSearchInHeader && <MobileSearchButton />}

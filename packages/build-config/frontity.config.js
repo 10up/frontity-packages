@@ -97,7 +97,7 @@ module.exports.webpack = ({ config, mode, target }) => {
 	// add @svgr/webpack
 	config.module.rules.push({
 		test: /\.svg$/,
-		use: ['@svgr/webpack'],
+		use: [{ loader: '@svgr/webpack', options: { namedExport: 'SVG' } }, 'file-loader'],
 	});
 
 	config.plugins.push(
