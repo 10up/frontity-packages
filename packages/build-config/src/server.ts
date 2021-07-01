@@ -9,13 +9,7 @@ const settings: TenUpBuildConfig = {
 	actions: {
 		TenUpBuildConfig: {
 			beforeSSR: ({ state }: TenUpBuildConfig) => {
-				const cssPath = path.join(
-					process.cwd(),
-					'build',
-					state.TenUpBuildConfig.publicPath,
-					'css',
-					'index.css',
-				);
+				const cssPath = path.join(process.cwd(), 'build', 'static', 'css', 'index.css');
 
 				fs.stat(cssPath, (error, stats) => {
 					if (!error && stats.isFile()) {

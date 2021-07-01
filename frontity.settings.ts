@@ -8,7 +8,15 @@ const settings = {
 		},
 	},
 	packages: [
-		'@10up/frontity-build-config',
+		{
+			name: '@10up/frontity-build-config',
+			state: {
+				TenUpBuildConfig: {
+					publicPath: '/static',
+				},
+			},
+		},
+
 		{
 			name: '@10up/twentypress',
 			state: {
