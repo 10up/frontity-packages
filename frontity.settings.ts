@@ -1,3 +1,5 @@
+const publicPath = process.env.PUBLIC_PATH || 'static';
+
 const settings = {
 	name: '10up-frontity-packages',
 	state: {
@@ -12,7 +14,7 @@ const settings = {
 			name: '@10up/frontity-build-config',
 			state: {
 				TenUpBuildConfig: {
-					publicPath: '/static',
+					publicPath,
 				},
 			},
 		},
