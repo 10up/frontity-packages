@@ -3,6 +3,7 @@ import client from './client';
 
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
 const settings: TenUpBuildConfig = {
 	...client,

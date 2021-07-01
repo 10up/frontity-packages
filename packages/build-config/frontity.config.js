@@ -2,12 +2,17 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports.webpack = ({ config, mode, target }) => {
-	const styleOrExtractionPlugin =
-		mode === 'development' && ['es5', 'module'].includes(target)
-			? {
-					loader: 'style-loader',
-			  }
-			: { loader: MiniCSSExtractPlugin.loader };
+	const shouldUseStyleLoader = mode === 'development' && ['es5', 'module'].includes(target);
+	const styleOrExtractionPlugin = shouldUseStyleLoader
+		? {
+				loader: 'style-loader',
+		  }
+		: {
+				loader: MiniCSSExtractPlugin.loader,
+				options: {
+					emit: target === 'server',
+				},
+		  };
 
 	config.module.rules.push({
 		test: /\.(sc|sa)ss$/,
@@ -100,14 +105,17 @@ module.exports.webpack = ({ config, mode, target }) => {
 		use: [{ loader: '@svgr/webpack', options: { namedExport: 'SVG' } }, 'file-loader'],
 	});
 
-	config.plugins.push(
-		new MiniCSSExtractPlugin({
-			filename: () => {
-				return `${config.output.publicPath}/css/index.css`;
-			},
-			chunkFilename: `${config.output.publicPath}/css/[id].css`,
-		}),
-	);
+	if (!shouldUseStyleLoader) {
+		config.plugins.push(
+			new MiniCSSExtractPlugin({
+				filename: (pathData) => {
+					return pathData.chunk.name === 'main'
+						? 'static/css/index.css'
+						: 'css/[name].css';
+				},
+			}),
+		);
+	}
 };
 
 module.exports.babel = ({ config, mode }) => {
