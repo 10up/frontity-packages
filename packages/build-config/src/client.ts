@@ -9,6 +9,7 @@ const settings: TenUpBuildConfig = {
 	state: {
 		TenUpBuildConfig: {
 			hasStaticCSS: false,
+			cssfilename: '',
 			publicPath: '/static',
 		},
 	},

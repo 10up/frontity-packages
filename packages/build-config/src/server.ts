@@ -10,11 +10,17 @@ const settings: TenUpBuildConfig = {
 	actions: {
 		TenUpBuildConfig: {
 			beforeSSR: ({ state }: TenUpBuildConfig) => {
-				const cssPath = path.join(process.cwd(), 'build', 'static', 'css', 'index.css');
-
-				fs.stat(cssPath, (error, stats) => {
-					if (!error && stats.isFile()) {
-						state.TenUpBuildConfig.hasStaticCSS = true;
+				const cssPath = path.join(process.cwd(), 'build', 'static', 'css');
+				fs.readdir(cssPath, (err, files) => {
+					if (err) {
+						state.TenUpBuildConfig.hasStaticCSS = false;
+					} else {
+						files.forEach((file) => {
+							if (file.match(/index\.?.+\.?css/)) {
+								state.TenUpBuildConfig.hasStaticCSS = true;
+								state.TenUpBuildConfig.cssfilename = file;
+							}
+						});
 					}
 				});
 			},

@@ -110,8 +110,8 @@ module.exports.webpack = ({ config, mode, target }) => {
 			new MiniCSSExtractPlugin({
 				filename: (pathData) => {
 					return pathData.chunk.name === 'main'
-						? 'static/css/index.css'
-						: 'css/[name].css';
+						? 'static/css/index.[contenthash].css'
+						: 'css/[name].[contenthash].css';
 				},
 			}),
 		);
