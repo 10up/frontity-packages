@@ -9,7 +9,7 @@ const Root: FC = () => {
 		return null;
 	}
 
-	const cssPath = `${state.TenUpBuildConfig.publicPath}/css/index.css`;
+	const cssPath = `${state.TenUpBuildConfig.publicPath}/css/${state.TenUpBuildConfig.cssfilename}`;
 	return (
 		<Head>
 			<link rel="stylesheet" href={cssPath} />

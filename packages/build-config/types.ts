@@ -8,6 +8,7 @@ interface TenUpBuildConfig extends Package {
 	state?: {
 		TenUpBuildConfig: {
 			hasStaticCSS?: boolean;
+			cssfilename?: string;
 			publicPath?: string;
 		};
 	};
