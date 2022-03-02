@@ -1,4 +1,4 @@
-import { Package } from 'frontity/types';
+import { Frontity, Package, MergePackages } from 'frontity/types';
 
 interface TenUpBuildConfig extends Package {
 	/**
@@ -18,6 +18,6 @@ interface TenUpBuildConfig extends Package {
 /**
  * The Packages type is a merge of all dependent packages.
  */
-export type Packages = TenUpBuildConfig;
+export type Packages = MergePackages<TenUpBuildConfig, Frontity>;
 
 export default TenUpBuildConfig;
