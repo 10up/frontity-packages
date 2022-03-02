@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file, per [the Keep a Changelog standard](http://keepachangelog.com/).
 
+## 0.2.2
+- Added: support for `state.frontity.options.publicPath`
+- Updated: frontity dep to latest version
+
 ## 0.2.1
 - Fixed: Add contenthash to generated css to burst cache.
 
