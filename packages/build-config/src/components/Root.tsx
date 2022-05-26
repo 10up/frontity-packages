@@ -9,9 +9,9 @@ const Root: FC = () => {
 		return null;
 	}
 
-	const cssPath = `${
-		state.frontity.options.publicPath ?? state.TenUpBuildConfig.publicPath
-	}/css/${state.TenUpBuildConfig.cssfilename}`;
+	const cssPath = `${state.frontity.options.publicPath ?? state.TenUpBuildConfig.publicPath}/${
+		state.TenUpBuildConfig.cssfilename
+	}`;
 
 	return (
 		<Head>

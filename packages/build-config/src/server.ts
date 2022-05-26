@@ -10,7 +10,7 @@ const settings: TenUpBuildConfig = {
 	actions: {
 		TenUpBuildConfig: {
 			beforeSSR: ({ state }: TenUpBuildConfig) => {
-				const cssPath = path.join(process.cwd(), 'build', 'static', 'css');
+				const cssPath = path.join(process.cwd(), 'build', 'static');
 				fs.readdir(cssPath, (err, files) => {
 					if (err) {
 						state.TenUpBuildConfig.hasStaticCSS = false;
