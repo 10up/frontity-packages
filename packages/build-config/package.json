@@ -1,6 +1,6 @@
 {
   "name": "@10up/frontity-build-config",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "10up's frontity build customizations",
   "keywords": [
     "frontity",
