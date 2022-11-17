@@ -27,6 +27,14 @@ module.exports.webpack = ({ config, mode, target }) => {
 				},
 			},
 			{
+				loader: require.resolve('postcss-loader'),
+				options: {
+					postcssOptions: {
+						config: path.join(__dirname, 'src', 'config', 'postcss.config.js'),
+					},
+				},
+			},
+			{
 				loader: require.resolve('sass-loader'),
 				options: {
 					sourceMap: mode === 'development',
